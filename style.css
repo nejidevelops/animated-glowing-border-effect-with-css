@@ -1,0 +1,26 @@
+
+.glowing-border {
+  --gradient-glow: yellow, green, blue, purple, red;
+
+  margin-block: 3rem;
+  padding: 8rem 3rem;
+  max-width: 60ch;
+
+  border: 10px solid transparent;
+  background: conic-gradient(var(--gradient-glow));
+}
+
+@layer general-styling {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: system-ui;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: clip;
+  }
+}
