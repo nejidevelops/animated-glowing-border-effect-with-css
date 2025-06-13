@@ -11,7 +11,7 @@
   border-radius: 0 100vw 100vw 0;
 
   background:
-    linear-gradient(Canvas 0 0) padding-box,
+    linear-gradient(var(--surface) 0 0) padding-box,
     conic-gradient(from -90deg, var(--gradient-glow)) border-box;
 
   position: relative;
@@ -25,12 +25,21 @@
   border-radius: inherit;
 }
 
+.glowing-border::before {
+  background: var(--surface, Canvas);
+  inset: 0.5rem;
+  scale: 1.2 1;
+  transform-origin: right;
+  z-index: -1;
+  filter: blur(0.5rem);
+}
+
 .glowing-border::after {
   background: conic-gradient(from -90deg, var(--gradient-glow));
-  inset: -1rem;
-  z-index: -1;
+  inset: -1.5rem;
+  z-index: -2;
   opacity: 0.5;
-  filter: blur(3rem);
+  filter: blur(0.5rem);
 }
 
 @layer general-styling {
@@ -47,7 +56,7 @@
     margin: 0;
     overflow-x: clip;
 
-    --surface: #333;  
+    --surface: #fff;  
     /* background: var(--surface); */
 
   }
