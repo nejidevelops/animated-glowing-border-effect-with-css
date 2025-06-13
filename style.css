@@ -13,6 +13,24 @@
   background:
     linear-gradient(Canvas 0 0) padding-box,
     conic-gradient(from -90deg, var(--gradient-glow)) border-box;
+
+  position: relative;
+  isolation: isolate;
+}
+
+.glowing-border::before,
+.glowing-border::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+}
+
+.glowing-border::after {
+  background: conic-gradient(from -90deg, var(--gradient-glow));
+  inset: -1rem;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(3rem);
 }
 
 @layer general-styling {
@@ -28,5 +46,9 @@
   body {
     margin: 0;
     overflow-x: clip;
+
+    --surface: #333;  
+    /* background: var(--surface); */
+
   }
 }
