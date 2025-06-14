@@ -1,35 +1,34 @@
 @property --clr-1 {
-  syntax: '<color>';
+  syntax: "<color>";
   inherits: true;
   initial-value: red;
 }
 
 @property --clr-2 {
-  syntax: '<color>';
+  syntax: "<color>";
   inherits: true;
   initial-value: yellow;
-
 }
 @property --clr-3 {
-  syntax: '<color>';
+  syntax: "<color>";
   inherits: true;
   initial-value: green;
 }
 @property --clr-4 {
-  syntax: '<color>';
+  syntax: "<color>";
   inherits: true;
   initial-value: blue;
 }
 
 @property --clr-5 {
-  syntax: '<color>';
+  syntax: "<color>";
   inherits: true;
   initial-value: purple;
 }
 
-
 .glowing-border {
-  --gradient-glow: yellow, green, blue, purple, red;
+  --gradient-glow: var(--clr-1), var(--clr-2), var(--clr-3), var(--clr-4),
+    var(--clr-5), var(--clr-1);
   --glow-intensity: 0.25;
   --border-width: 10px;
   --glow-size: 1rem;
@@ -39,12 +38,11 @@
   padding: 8rem 3rem;
   max-width: 60ch;
 
-  border:  var(--border-width, 3px) solid transparent;
+  border: var(--border-width, 3px) solid transparent;
   border-left: 0;
   border-radius: 0 100vw 100vw 0;
 
-  background:
-    linear-gradient(var(--surface) 0 0) padding-box,
+  background: linear-gradient(var(--surface) 0 0) padding-box,
     conic-gradient(from -90deg, var(--gradient-glow)) border-box;
 
   position: relative;
@@ -53,7 +51,7 @@
 
 .glowing-border::before,
 .glowing-border::after {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: inherit;
 }
@@ -78,7 +76,7 @@
 .glowing-border.right {
   margin-inline-start: auto;
   border-radius: 100vw 0 0 100vw;
-  border:  var(--border-width, 3px) solid transparent;
+  border: var(--border-width, 3px) solid transparent;
   border-right: 0;
 
   &::before {
@@ -106,6 +104,5 @@
 
     /* --surface: #fff;   */
     background: var(--surface);
-
   }
 }
