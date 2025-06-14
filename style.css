@@ -1,12 +1,45 @@
+@property --clr-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: red;
+}
+
+@property --clr-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: yellow;
+
+}
+@property --clr-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: green;
+}
+@property --clr-4 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: blue;
+}
+
+@property --clr-5 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: purple;
+}
+
 
 .glowing-border {
   --gradient-glow: yellow, green, blue, purple, red;
+  --glow-intensity: 0.25;
+  --border-width: 10px;
+  --glow-size: 1rem;
+  --surface: #000;
 
   margin-block: 3rem;
   padding: 8rem 3rem;
   max-width: 60ch;
 
-  border: 10px solid transparent;
+  border:  var(--border-width, 3px) solid transparent;
   border-left: 0;
   border-radius: 0 100vw 100vw 0;
 
@@ -31,15 +64,30 @@
   scale: 1.2 1;
   transform-origin: right;
   z-index: -1;
-  filter: blur(0.5rem);
+  filter: blur(var(--glow-size, 1rem));
 }
 
 .glowing-border::after {
   background: conic-gradient(from -90deg, var(--gradient-glow));
   inset: -1.5rem;
   z-index: -2;
-  opacity: 0.5;
-  filter: blur(0.5rem);
+  filter: blur(var(--glow-size, 1rem));
+  opacity: var(--glow-intensity, 0.125);
+}
+
+.glowing-border.right {
+  margin-inline-start: auto;
+  border-radius: 100vw 0 0 100vw;
+  border:  var(--border-width, 3px) solid transparent;
+  border-right: 0;
+
+  &::before {
+    transform-origin: left;
+  }
+}
+
+.glowing-border.left {
+  margin-inline-end: auto;
 }
 
 @layer general-styling {
@@ -49,15 +97,15 @@
 
   html {
     font-family: system-ui;
-    /* color-scheme: dark; */
+    color-scheme: dark;
   }
 
   body {
     margin: 0;
     overflow-x: clip;
 
-    --surface: #fff;  
-    /* background: var(--surface); */
+    /* --surface: #fff;   */
+    background: var(--surface);
 
   }
 }
